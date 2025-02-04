@@ -190,7 +190,11 @@ elif [ "$DISTRO" = "homebrew" ]; then
          echo "$PKG is already installed, skipping."
       fi
    done
-   brew install $@ $PKGS
+   if [ -z "$PKGS" ]; then
+       echo "All dependencies installed, nothing to do ..."
+   else
+       brew install $@ $PKGS
+   fi
 
 elif [ "$DISTRO" = "solus" ]; then
    echo "Installing dependencies for Solus..."
